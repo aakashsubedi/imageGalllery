@@ -59,18 +59,36 @@
 </div>
 
 <script>
-    let next = document.querySelector('.next');
+   
+   let next = document.querySelector('.next');
     let prev = document.querySelector('.prev');
 
-    next.addEventListener('click', function () {
+    function moveNext() {
         let items = document.querySelectorAll('.item');
         document.querySelector('.slide').appendChild(items[0]);
-    })
+    }
 
-    prev.addEventListener('click', function () {
+    function movePrev() {
         let items = document.querySelectorAll('.item');
         document.querySelector('.slide').prepend(items[items.length - 1]);
-    })
+    }
+
+    // Add touch support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.querySelector('.slide').addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.querySelector('.slide').addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) moveNext();
+        if (touchEndX - touchStartX > 50) movePrev();
+    });
+
+    next.addEventListener('click', moveNext);
+    prev.addEventListener('click', movePrev);
 </script>
 </body>
 </html>

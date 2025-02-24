@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +9,7 @@
 
 body {
     background: #eaeaea;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .container {
@@ -16,7 +17,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1000px;
+    width: 90%;
+    max-width: 1000px;
     height: 600px;
     border-radius: 15px;
     background: #f5f5f5;
@@ -33,9 +35,8 @@ body {
     box-shadow: 0 30px 50px #505050;
     background-position: 50% 50%;
     background-size: cover;
-    background-repeat: no-repeat;
     display: inline-block;
-    transition: 0.5s;
+    transition: all 0.5s ease-in-out;
 }
 
 .slide .item:nth-child(1),
@@ -43,7 +44,6 @@ body {
     top: 0;
     left: 0;
     transform: translate(0, 0);
-    border-radius: 0;
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -53,31 +53,18 @@ body {
     display: block;
 }
 
-.slide .item:nth-child(3) {
-    left: 50%;
-}
-
-.slide .item:nth-child(4) {
-    left: calc(50% + 220px);
-}
-
-.slide .item:nth-child(5) {
-    left: calc(50% + 440px);
-}
-
-.slide .item:nth-child(n + 6) {
-    left: calc(50% + 440px);
-    overflow: hidden;
-}
+.slide .item:nth-child(3) { left: 50%; }
+.slide .item:nth-child(4) { left: calc(50% + 220px); }
+.slide .item:nth-child(5) { left: calc(50% + 440px); }
+.slide .item:nth-child(n + 6) { left: calc(50% + 440px); }
 
 .item .content {
     position: absolute;
     top: 50%;
     left: 100px;
     width: 300px;
-    text-align: left;
     color: #eee;
-    transform: translate(0, -50%);
+    transform: translateY(-50%);
     font-family: system-ui;
     display: none;
 }
@@ -91,10 +78,9 @@ body {
 }
 
 .content .description {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
     opacity: 0;
-    animation: animate 1s ease-in-out 0.3s 1 forwards;
+    animation: animate 1s ease-in-out 0.3s forwards;
 }
 
 .content button {
@@ -102,7 +88,7 @@ body {
     border: none;
     cursor: pointer;
     opacity: 0;
-    animation: animate 1s ease-in-out 0.6s 1 forwards;
+    animation: animate 1s ease-in-out 0.6s forwards;
 }
 
 @keyframes animate {
@@ -111,7 +97,6 @@ body {
         transform: translate(0, 100px);
         filter: blur(33px);
     }
-
     to {
         opacity: 1;
         transform: translate(0);
@@ -130,14 +115,70 @@ body {
     width: 40px;
     height: 35px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #000;
     cursor: pointer;
     margin: 0 5px;
-    border: 1px solid #000;
     transition: 0.3s;
 }
 
 .button button:hover {
     background: #ababab;
     color: #fff;
+}
+
+@media (max-width: 768px) {
+    .container {
+        height: 400px;
+    }
+
+    .slide .item {
+        width: 150px;
+        height: 225px;
+    }
+
+    .slide .item:nth-child(3) { left: 50%; }
+    .slide .item:nth-child(4) { left: calc(50% + 160px); }
+    .slide .item:nth-child(5) { left: calc(50% + 320px); }
+
+    .item .content {
+        left: 50px;
+        width: 60%;
+    }
+
+    .content .name {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        height: 300px;
+    }
+
+    .slide .item {
+        width: 120px;
+        height: 180px;
+    }
+
+    .slide .item:nth-child(3) { left: 50%; }
+    .slide .item:nth-child(4) { left: calc(50% + 130px); }
+    .slide .item:nth-child(5) { left: calc(50% + 260px); }
+
+    .item .content {
+        left: 20px;
+        width: 80%;
+    }
+
+    .content .name {
+        font-size: 24px;
+    }
+
+    .content .description {
+        font-size: 14px;
+    }
+
+    .button button {
+        width: 35px;
+        height: 30px;
+    }
 }
